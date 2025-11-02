@@ -1,4 +1,3 @@
-// app/api/generate/route.ts
 export async function GET(req: Request): Promise<Response> {
   const { searchParams } = new URL(req.url);
 
@@ -27,5 +26,5 @@ export async function GET(req: Request): Promise<Response> {
     password += chars[randomIndex];
   }
 
-  return Response.json({ password });
+  return new Response(password);
 }
