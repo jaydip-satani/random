@@ -20,10 +20,13 @@ export async function GET(req: Request): Promise<Response> {
     );
   }
 
+  const randomArray = new Uint32Array(length);
+  crypto.getRandomValues(randomArray);
+
   let password = "";
   for (let i = 0; i < length; i++) {
-    const randomIndex = Math.floor(Math.random() * chars.length);
-    password += chars[randomIndex];
+    const index = randomArray[i] % chars.length;
+    password += chars[index];
   }
 
   return new Response(password);
